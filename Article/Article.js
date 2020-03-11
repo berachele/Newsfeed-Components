@@ -166,8 +166,8 @@ const data = [
 const parent = document.querySelector('.articles')
 
 //Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-data.map(showData => {
-  console.log("let's console the data!", showData.date)
+// data.map(showData => {
+//   console.log("let's console the data!", showData.date)
   parent.append(createArticle(showData))
   
   return data
