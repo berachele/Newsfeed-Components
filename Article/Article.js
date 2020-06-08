@@ -85,10 +85,19 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Mysterious Cookie found Missing!!',
+    date: 'March 11th, 2020',
+    firstParagraph: `Bonbon sesame snaps dragée lemon drops jujubes bear claw cake topping donut. Cookie wafer muffin gingerbread icing halvah danish caramels. Bear claw cupcake cake sweet pudding muffin cookie cheesecake. Cake cake liquorice tart cookie halvah chocolate. Candy canes cake tootsie roll chocolate sweet roll. Powder chupa chups toffee cookie wafer. Gummi bears tootsie roll sweet. Chocolate bar bear claw chocolate cake pastry. Chocolate lemon drops sweet roll. Chocolate bar chocolate apple pie gingerbread chocolate. Sweet pastry donut lemon drops bonbon. Marzipan croissant chocolate sesame snaps cotton candy soufflé. Candy sweet roll tart bear claw. Bear claw candy canes cotton candy ice cream icing wafer jelly tart pastry.`,
+
+    secondParagraph: `Toffee caramels macaroon candy lollipop ice cream tart tiramisu. Pie marzipan carrot cake ice cream halvah cheesecake. Jelly cake caramels gummies. Chocolate cake donut carrot cake fruitcake cupcake icing. Carrot cake chocolate tiramisu cake gingerbread marzipan. Halvah marshmallow gummi bears jelly-o fruitcake candy canes. Cotton candy cake donut ice cream chupa chups pudding ice cream. Ice cream marzipan bonbon croissant cotton candy gingerbread topping lollipop jujubes. Sesame snaps bear claw soufflé jelly-o liquorice cookie soufflé. Sweet roll oat cake pastry ice cream danish powder liquorice. Bear claw tiramisu soufflé candy canes bonbon brownie. Sesame snaps pie oat cake caramels topping candy. Muffin jelly-o chocolate dessert jujubes.`,
+
+    thirdParagraph: `Brownie toffee cheesecake toffee apple pie muffin. Dragée gingerbread jelly-o. Oat cake candy canes tiramisu gummi bears fruitcake. Ice cream bear claw jelly beans macaroon marzipan tart sesame snaps pudding. Liquorice marzipan croissant tiramisu soufflé jelly croissant sesame snaps topping. Sweet roll dessert powder chocolate lollipop jelly beans icing. Tart biscuit carrot cake chupa chups biscuit pastry oat cake bear claw. Carrot cake pastry bear claw gingerbread. Sugar plum cheesecake sweet roll cheesecake marshmallow. Tootsie roll cookie dessert fruitcake. Lollipop lemon drops tiramisu carrot cake gingerbread lollipop tart. Jujubes lollipop danish bear claw liquorice sweet. Cake lemon drops lollipop chupa chups cupcake cake jelly beans danish macaroon. Jelly beans icing ice cream cheesecake oat cake.`
+  },
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+/* Step 1: Create a function that creates a component. You will want your component to look like the template below: ✅
   
   <div class="article">
     <h2>{title of the article}</h2>
@@ -101,14 +110,65 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above. ✅
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
-  Step 3: return the entire component.
+  Step 3: return the entire component. ✅
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.✅
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.✅
 */
+
+//MY CODE HERE 
+
+//Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+//Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+
+ function createArticle(info){
+  //create new elements
+  const article = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const date = document.createElement('p')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const btn = document.createElement('span')
+
+  //setup the structure/parent:child of our elements
+  article.append(h2, date, p1, p2, p3, btn)
+
+  //add classes the elements
+  article.classList.add('article')
+  date.classList.add('date')
+  btn.classList.add('expandButton')
+
+  //add textContent
+  h2.textContent = info.title
+  date.textContent = info.date
+  p1.textContent = info.firstParagraph
+  p2.textContent = info.secondParagraph
+  p3.textContent = info.thirdParagraph
+  btn.textContent = 'expand Button'
+
+  //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  btn.addEventListener('click', (event) =>{
+    // console.log('button was clicked!', event.target) testing
+    article.classList.toggle('article-open')
+  })
+
+  //return the entire component
+    return article
+ }
+
+//grab the parent
+const parent = document.querySelector('.articles')
+
+//Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+// data.map(showData => {
+//   console.log("let's console the data!", showData.date)
+  parent.append(createArticle(showData))
+  
+  return data
+})
